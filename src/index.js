@@ -1,15 +1,14 @@
-const express = require('express')
-const cors = require('cors')
-const bodyParser= require('body-parser')
-const connectionDB = require('../config/db')
-const app = express()
-const port = process.env.PORT ||3000
+const express = require('express');
+const connectionDB = require('../config/db');
+const cors = require('cors');
+require('dotenv').config();
 
-require('dotenv').config()
+const app = express();
+const port = 3000;
+
 connectionDB();
 app.use(cors());
 app.use(express.json());
-app.use(bodyParser.json())
 app.use('/api/clientes', require('../routes/routesCli'));
 app.use('/api/productos', require('../routes/routesProd'));
 app.use('/api/user', require('../routes/authController'));
